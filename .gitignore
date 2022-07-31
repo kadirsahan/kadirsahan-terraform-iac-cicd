@@ -1,0 +1,23 @@
+**/.terraform/*
+.terraform/*
+infra/.terraform/*
+infra/**/.terraform/*
+terraform*
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+infra/*.tfstate
+infra/*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+infra/crash.log
+infra/crash.*.log
+
+
+# go files
+go.mod
+go.sum
