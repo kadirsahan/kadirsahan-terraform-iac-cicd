@@ -1,8 +1,16 @@
 **/.terraform/*
 .terraform/*
+
+#infra
 infra/.terraform/*
 infra/**/.terraform/*
 infra/.terraform.lock.hcl
+
+#ecs
+ecs/.terraform/*
+ecs/**/.terraform/*
+ecs/.terraform.lock.hcl
+
 terraform*
 # .tfstate files
 *.tfstate
