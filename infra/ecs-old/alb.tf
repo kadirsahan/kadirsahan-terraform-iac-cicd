@@ -1,6 +1,6 @@
 # alb.tf | Load Balancer Configuration
 
-resource "aws_alb" "application_load_balancer" {
+resource "aws_lb" "application_load_balancer" {
   name               = "${var.app_name}-${var.app_environment}-alb"
   internal           = false
   load_balancer_type = "application"
@@ -69,7 +69,7 @@ resource "aws_lb_target_group" "target_group" {
 }
 
 resource "aws_lb_listener" "listener" {
-  load_balancer_arn = aws_alb.application_load_balancer.id
+  load_balancer_arn = aws_lb.application_load_balancer.id
   port              = "80"
   protocol          = "HTTP"
 
@@ -79,3 +79,4 @@ resource "aws_lb_listener" "listener" {
   }
 
 }
+

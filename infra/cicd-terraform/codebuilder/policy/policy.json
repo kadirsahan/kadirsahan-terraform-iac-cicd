@@ -1,0 +1,101 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "CloudWatchLogsPolicy",
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource": [
+          "*"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+            "secretsmanager:GetSecretValue"
+        ],
+        "Resource": [
+            "arn:aws:secretsmanager:us-east-1:921975613299:secret:dockerhub-p6OibI"
+        ]
+    },
+    {
+        "Effect": "Allow",
+        "Action": [
+            "ecr:CompleteLayerUpload",
+            "ecr:GetAuthorizationToken",
+            "ecr:UploadLayerPart",
+            "ecr:InitiateLayerUpload",
+            "ecr:BatchCheckLayerAvailability",
+            "ecr:PutImage"
+        ],
+        "Resource": "*"
+    },
+      {
+        "Sid": "CodeCommitPolicy",
+        "Effect": "Allow",
+        "Action": [
+          "codecommit:GitPull"
+        ],
+        "Resource": [
+          "*"
+        ]
+      },
+      {
+        "Sid": "S3GetObjectPolicy",
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:GetObjectVersion"
+        ],
+        "Resource": [
+          "*"
+        ]
+      },
+      {
+        "Sid": "S3PutObjectPolicy",
+        "Effect": "Allow",
+        "Action": [
+          "s3:PutObject"
+        ],
+        "Resource": [
+          "*"
+        ]
+      },
+      {
+        "Sid": "ECRPullPolicy",
+        "Effect": "Allow",
+        "Action": [
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage"
+        ],
+        "Resource": [
+          "*"
+        ]
+      },
+      {
+        "Sid": "ECRAuthPolicy",
+        "Effect": "Allow",
+        "Action": [
+          "ecr:GetAuthorizationToken"
+        ],
+        "Resource": [
+          "*"
+        ]
+      },
+      {
+        "Sid": "S3BucketIdentity",
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetBucketAcl",
+          "s3:GetBucketLocation"
+        ],
+        "Resource": 
+          "*"
+      }
+    ]
+  }

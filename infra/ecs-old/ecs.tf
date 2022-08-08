@@ -28,7 +28,7 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
   [
     {
       "name": "${var.app_name}-${var.app_environment}-container",
-      "image": "nginx:latest",
+      "image": "921975613299.dkr.ecr.us-east-1.amazonaws.com/gnmn:1",
       "entryPoint": [],
       "essential": true,
       "logConfiguration": {
@@ -41,8 +41,8 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
       },
       "portMappings": [
         {
-          "containerPort": 8080,
-          "hostPort": 8080
+          "containerPort": 80,
+          "hostPort": 80
         }
       ],
       "cpu": 256,
@@ -90,7 +90,7 @@ resource "aws_ecs_service" "aws-ecs-service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.target_group.arn
     container_name   = "${var.app_name}-${var.app_environment}-container"
-    container_port   = 8080
+    container_port   = 80
   }
 
   depends_on = [aws_lb_listener.listener]

@@ -1,6 +1,12 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+      - echo Login to Docker hub
+      - echo "${DOCKERHUB_PASSWORD}" 
+      - echo "${DOCKERHUB_USERNAME}" 
+      - echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
@@ -10,15 +16,17 @@ phases:
       - REPOSITORY_URI=921975613299.dkr.ecr.us-east-1.amazonaws.com/gnmn
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
+      
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -f python-app/Dockerfile -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - echo $IMAGE_TAG
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:latest
   post_build:
     commands:
       - echo Build completed on `date`
+      - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing definitions file...
